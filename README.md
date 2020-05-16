@@ -24,3 +24,9 @@ Prosjektet er hovedsakelig gjennomført som peer-programming, hvor ca. 70% av ko
 ## Annen teknologi
 
 Styringen gjøres via et JSON-API mot Philips Hue kontroller, som tyrer lyspærene.
+
+## Involvert kode
+
+`lights.py` inneholder kode som lager klassen for lysene, og som lager de individuele lysene, den gjør også sånn at vi kan hente informasjonen fra lysene. 
+`webfun.py` inneholder kode som henter statusen av lysene, viser nettsiden og lar nettsiden styre lysene.
+`index.html` gjør at siden ser ut sånn som den gjør, den lager også knappene på nettsiden. 
