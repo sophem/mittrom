@@ -21,6 +21,8 @@ I tillegg er det brukt HTML for nettsiden, sammen med Bootstrap for bedre design
 
 Prosjektet er hovedsakelig gjennomført som peer-programming, hvor ca. 70% av koden er laget i fellesskap med pappa, ca. 25% av koden er skrevet av meg alene, og ca. 5% er skrevet av ham (javascript i nettsiden, kode for å ikke være helt åpent på nett).
 
+Ved peer-programming har det vært jeg som har programmert, mens pappa har gitt råd, vist og hjulpet når jeg har stått fast.
+
 ## Annen teknologi
 
 Styringen gjøres via et JSON-API mot Philips Hue kontroller, som tyrer lyspærene.
