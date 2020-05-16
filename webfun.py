@@ -1,13 +1,22 @@
 #!/usr/bin/python3
 
+import sys, os, configparser
+
+import requests
 from flask import Flask, request, render_template
 
 from lights import Light
+  
+cf = configparser.ConfigParser()
+cf.read('porc')
 
 app = Flask(__name__)
 
 def tell_sophie(message):
-    pass
+    d = {'token': cf.get('pushover', 'apikey'),
+         'user': cf.get('pushover', 'userkey'),
+         'message': message }
+    requests.post('https://api.pushover.net/1/messages.json', json=d)
 
 def access(url, secret, message=None):
     people_secrets = []
@@ -19,7 +28,7 @@ def access(url, secret, message=None):
     for code, user in people_secrets:
         if code == secret:
             if message: tell_sophie(f"{user}: {message}")
-            return user
+            return user.strip()
 
     return None
 
