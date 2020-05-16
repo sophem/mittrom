@@ -13,12 +13,16 @@ cf.read('porc')
 app = Flask(__name__)
 
 def tell_sophie(message):
+    """Send a message to Sophie, using Pushover."""
+    
     d = {'token': cf.get('pushover', 'apikey'),
          'user': cf.get('pushover', 'userkey'),
          'message': message }
     requests.post('https://api.pushover.net/1/messages.json', json=d)
 
 def access(url, secret, message=None):
+    """Gets the secrets, checks if the user is allowed on the page, returns the user or None"""
+    
     people_secrets = []
     with open('secrets', 'r') as file:
         lines = file.readlines()
@@ -29,17 +33,21 @@ def access(url, secret, message=None):
     
     for code, user in people_secrets:
         if code == secret:
-            if message: tell_sophie(f"{user}: {message}")
+            if message:
+                # If we got a message (optional) send it
+                tell_sophie(f"{user}: {message}")
             return user
 
     return None
 
 @app.route("/")
 def root():
+    """If someone goes to the page without a kode they only get no"""
     return "No."
 
 @app.route("/<secret>/")
 def index(secret):
+    """Makes a list of the lights on the page, and excludes my space heater"""
     if not access(request.url, secret, "Besøkte siden"): return "No."
     
     lights = Light.get_lights()
@@ -52,6 +60,7 @@ def index(secret):
 
 @app.route("/<secret>/lights/status")
 def light_status(secret):
+    """Makes it check the status of the lights"""
     if not access(request.url, secret, "Sjekket status"): return "No."
 
     Light.refresh()
@@ -68,6 +77,7 @@ def light_status(secret):
 
 @app.route("/<secret>/lights/set", methods=["POST"])
 def light_set(secret):
+    """Turn on or off a specific light"""
     if not access(request.url, secret): return "No."
 
     Light.refresh()
