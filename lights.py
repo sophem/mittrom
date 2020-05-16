@@ -1,8 +1,14 @@
 import json
 import requests
+import configparser
+
+cf = configparser.ConfigParser()
+cf.read('hue.ini')
+hue_host = cf.get('hue', 'host')
+hue_secret = cf.get('hue', 'secret')
 
 class Light:
-    baseurl="http://10.130.10.111/api/3QEbijbqAbKxzK-qSdfwHzL0qWOB2Ll1h8cPqfn7"
+    baseurl=f"http://{hue_host}/api/{hue_secret}"
     lights_url=baseurl + "/lights"
     lights_state_url=baseurl + "/lights/%s/state"
     
