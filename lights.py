@@ -1,7 +1,6 @@
 import json
 import requests
 
-
 class Light:
     baseurl="http://10.130.10.111/api/3QEbijbqAbKxzK-qSdfwHzL0qWOB2Ll1h8cPqfn7"
     lights_url=baseurl + "/lights"
