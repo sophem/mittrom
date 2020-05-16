@@ -8,7 +8,7 @@ Plan videre er å utvide med mulighet for å styre lysstyrke, og også farge på
 
 Prosjektet kan sees her:
 
-https://mitt.rom.sophi.es/<kode>/
+https://mitt.rom.sophi.es/$kode/
 
 Men man må ha riktig kode for å komme inn på siden, vi vil jo ikke at hele verden skal kunne styre lyset mitt.
 
