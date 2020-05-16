@@ -23,12 +23,14 @@ def access(url, secret, message=None):
     with open('secrets', 'r') as file:
         lines = file.readlines()
         for line in lines:
-            if line: people_secrets.append(line.split(':'))
+            if line:
+                code, user = line.split(':')
+                people_secrets.append([code, user.strip()])
     
     for code, user in people_secrets:
         if code == secret:
             if message: tell_sophie(f"{user}: {message}")
-            return user.strip()
+            return user
 
     return None
 
